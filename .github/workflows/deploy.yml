@@ -2,8 +2,8 @@ name: Precios PVPC y despliegue en GitHub Pages
 
 # Red Eléctrica publica el PVPC del día siguiente hacia las 20:15 (hora de Madrid).
 # Horas en UTC: Madrid es UTC+2 hasta el último domingo de octubre y UTC+1 después,
-# por eso hay dos pasadas por la tarde (cubren 20:40 y 21:40 en verano, 19:40 y 20:40 en
-# invierno), una de rescate, dos tras medianoche (cambio de « hoy ») y una a primera hora
+# por eso hay tres pasadas por la tarde (cubren 20:40, 21:25 y 21:40 en verano, 19:40, 20:25 y
+# 20:40 en invierno), una de rescate, dos tras medianoche (cambio de « hoy ») y una a primera hora
 # de la tarde para el mercado al cuarto de hora del día siguiente.
 on:
   push:
@@ -11,6 +11,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '40 18 * * *'
+    - cron: '25 19 * * *'
     - cron: '40 19 * * *'
     - cron: '40 20 * * *'
     - cron: '5 22 * * *'

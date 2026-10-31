@@ -45,8 +45,14 @@ export default function AparatoCalc({ lang, aparato, datos, precioLibre, methodH
   const ini = Math.max(0, Math.min(23.75, v.ini));
   const coste = costeTramo(precios, ini, duracion, consumo);
   const ventana = Math.max(0.25, 24 - 1e-9);
-  // Solo inicios dentro del día elegido (de 0:00 a 23:45).
-  const best = (() => { let b = { inicio: 0, coste: Infinity }, w = { inicio: 0, coste: -Infinity }; for (let s = 0; s <= ventana; s += 0.25) { const c = costeTramo(precios, s, duracion, consumo); if (c < b.coste) b = { inicio: s, coste: c }; if (c > w.coste) w = { inicio: s, coste: c }; } return { b, w }; })();
+  // Solo inicios dentro del día elegido (de 0:00 a 23:45) y, si el día es hoy, a partir de la hora actual.
+  const buscar = (desde: number) => { let b = { inicio: 0, coste: Infinity }, w = { inicio: 0, coste: -Infinity }; for (let s = desde; s <= ventana; s += 0.25) { const c = costeTramo(precios, s, duracion, consumo); if (c < b.coste) b = { inicio: s, coste: c }; if (c > w.coste) w = { inicio: s, coste: c }; } return { b, w }; };
+  const delDia = buscar(0);
+  const desdeAhora = hoyD.ahora && hoyD.ahora.fecha === hoyD.fecha ? Math.min(23.75, Math.ceil(hoyD.ahora.hora * 4) / 4) : 0;
+  const best = desdeAhora > 0 ? buscar(desdeAhora) : delDia;
+  // El aviso de precio estimado solo si alguna hora usada en el resultado lo es (mañana solo cuenta si el tramo pasa de medianoche).
+  const pasaMedianoche = [ini, best.b.inicio, best.w.inicio].some((s) => s + duracion > 24 + 1e-9);
+  const usaEstimado = hoyD.estimado || (sigD.estimado && pasaMedianoche);
   const imp = impuestosDelDia(hoyD.fecha, 4.6);
   const libre = consumo * libreConImpuestos(v.libre / 100, imp);
   const anual = (c: number) => c * v.usos * 52;
@@ -58,13 +64,13 @@ export default function AparatoCalc({ lang, aparato, datos, precioLibre, methodH
   const rows = [
     { label: T(lang, `Consumo (${detalle})`, `Energy (${detalle})`), value: `${nr(consumo, lang, 2)} kWh` },
     { label: T(lang, `Duración`, `Duration`), value: `${nr(duracion, lang, 2)} h` },
-    { label: T(lang, `Mejor hora para empezar: ${reloj(best.b.inicio)}`, `Best start time: ${reloj(best.b.inicio)}`), value: eur(best.b.coste, lang), strong: true },
+    { label: desdeAhora > 0 ? T(lang, `Mejor hora para empezar desde ahora: ${reloj(best.b.inicio)}`, `Best start time from now: ${reloj(best.b.inicio)}`) : T(lang, `Mejor hora para empezar: ${reloj(best.b.inicio)}`, `Best start time: ${reloj(best.b.inicio)}`), value: eur(best.b.coste, lang), strong: true },
     { label: T(lang, `Peor hora: ${reloj(best.w.inicio)}`, `Worst start time: ${reloj(best.w.inicio)}`), value: eur(best.w.coste, lang) },
     { label: T(lang, `Con un precio fijo de ${kwh(v.libre / 100, lang)} sin impuestos`, `With a fixed price of ${kwh(v.libre / 100, lang)} before taxes`), value: eur(libre, lang) },
     { label: T(lang, `Al año, ${nr(v.usos, lang)} veces por semana a la hora elegida`, `Per year, ${nr(v.usos, lang)} times a week at your chosen time`), value: eur(anual(coste), lang) },
-    { label: T(lang, 'Al año, siempre a la mejor hora', 'Per year, always at the best time'), value: eur(anual(best.b.coste), lang), note: true },
+    { label: T(lang, 'Al año, siempre a la mejor hora', 'Per year, always at the best time'), value: eur(anual(delDia.b.coste), lang), note: true },
   ];
-  const aviso = hoyD.estimado || sigD.estimado ? (
+  const aviso = usaEstimado ? (
     <p className="mt-3 rounded-md border-l-4 border-amber-600 bg-amber-50 px-3 py-2 text-sm text-amber-900" role="note">{T(lang, 'Parte de las horas usa el precio medio estimado (Red Eléctrica aún no ha publicado ese día): no es el precio exacto.', 'Some hours use the estimated average price (Red Eléctrica has not published that day yet): not the exact price.')}</p>
   ) : null;
   return (
