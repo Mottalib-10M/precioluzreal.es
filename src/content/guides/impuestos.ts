@@ -47,7 +47,7 @@ export default defineGuide({
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>Los dos impuestos, paso a paso</h2>
+      return `<h2>Los dos impuestos de la factura de la luz, paso a paso</h2>
 <p>El ${h.src('ley38Iee', 'impuesto especial sobre la electricidad')} se calcula sobre el importe de la potencia, la energía y los demás conceptos del suministro, sin incluir el alquiler del contador. Su tipo general es del 5,11269632 %, con una cuota mínima de 1 € por MWh para los hogares. Después viene el ${h.src('ley37Iva', 'IVA')}, al tipo general del 21 %, que se aplica sobre todo lo anterior: potencia, energía, impuesto eléctrico y contador.</p>
 ${h.table(['Concepto', 'Hoy', 'En abril de 2026'], [
   ['Potencia y energía (ejemplo)', h.eur(v.base, 2), h.eur(v.base, 2)],
@@ -89,7 +89,7 @@ ${h.table(['Concepto', 'Hoy', 'En abril de 2026'], [
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>The two taxes, step by step</h2>
+      return `<h2>The two electricity taxes, step by step</h2>
 <p>The ${h.src('ley38Iee', 'special electricity tax')} is charged on power, energy and the other supply items, excluding meter rental. Its standard rate is 5.11269632%, with a minimum of 1 € per MWh for households. Then comes ${h.src('ley37Iva', 'VAT')} at the standard 21%, applied to everything above: power, energy, electricity tax and meter.</p>
 ${h.table(['Item', 'Today', 'In April 2026'], [
   ['Power and energy (example)', h.eur(v.base, 2), h.eur(v.base, 2)],

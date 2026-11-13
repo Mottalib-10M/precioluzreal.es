@@ -29,7 +29,7 @@ export const HOME: Record<'es' | 'en', HomeText> = {
     title: 'Precio de la luz hoy 2026: PVPC con impuestos hora a hora',
     description: 'Precio de la luz hoy y mañana: las 24 horas del PVPC con IVA e impuesto eléctrico, la hora más barata y el coste de tus aparatos. Datos de Red Eléctrica.',
     h1: 'Precio de la luz hoy: el PVPC con impuestos, hora a hora',
-    intro: 'Lo que pagas de verdad por cada kWh hoy, con IVA e impuesto eléctrico, a partir del archivo oficial de Red Eléctrica.',
+    intro: 'Lo que pagas de verdad por cada kWh hoy: el precio de la luz con IVA e impuesto eléctrico, a partir del archivo oficial de Red Eléctrica.',
     resume: (h) => {
       const v = datos(h);
       return `Hoy, ${h.dia(v.hoy.fecha)}, el kilovatio hora de la tarifa regulada PVPC cuesta de media ${h.kwh(v.hoy.media)} con impuestos en la Península y Baleares: la hora más barata es la de ${h.tramo(v.hoy.min.h)}, a ${h.kwh(v.hoy.min.ttc)}, y la más cara la de ${h.tramo(v.hoy.max.h)}, a ${h.kwh(v.hoy.max.ttc)}, ${h.num(v.ratio, 1)} veces más. Son los 24 precios que publica Red Eléctrica en su archivo oficial del PVPC 2.0TD, que ya incluyen la energía, los peajes de la CNMC y los cargos del Ministerio, a los que sumamos el impuesto especial sobre la electricidad (${pct(h, v.imp.iee, 2)}) y el IVA (${pct(h, v.imp.iva, 0)}) en vigor ese día. Casi todas las páginas que se ven en Google dan el precio sin impuestos; aquí verás los dos y podrás calcular, sin dejar ningún teléfono, cuánto te cuesta poner la lavadora, el horno o cargar el coche a cada hora, y si te compensa un precio fijo del mercado libre.`;
@@ -136,7 +136,7 @@ ${(() => {
     title: 'Electricity Price Spain Today 2026: PVPC with Tax by Hour',
     description: 'Electricity price in Spain today and tomorrow: all 24 PVPC hours with VAT and electricity tax, the cheapest hour and each appliance’s cost. Red Eléctrica data.',
     h1: 'Electricity price in Spain today: the PVPC with taxes, hour by hour',
-    intro: 'What each kWh really costs you today, VAT and electricity tax included, built from Red Eléctrica’s official file.',
+    intro: 'What each kWh of electricity really costs you today in Spain, VAT and electricity tax included, built from Red Eléctrica’s official file.',
     resume: (h) => {
       const v = datos(h);
       return `Today, ${h.dia(v.hoy.fecha)}, a kilowatt hour on Spain’s regulated PVPC tariff costs ${h.kwh(v.hoy.media)} on average with taxes on the mainland and the Balearics. The cheapest hour is ${h.tramo(v.hoy.min.h)}, at ${h.kwh(v.hoy.min.ttc)}, and the dearest is ${h.tramo(v.hoy.max.h)}, at ${h.kwh(v.hoy.max.ttc)}, ${h.num(v.ratio, 1)} times as much. These are the 24 prices Red Eléctrica, the grid operator, publishes in its official PVPC 2.0TD file; they already include energy, the network tolls set by the CNMC regulator and the government’s system charges. We add the electricity tax (${pct(h, v.imp.iee, 2)}) and VAT (${pct(h, v.imp.iva, 0)}) in force that day. Most Spanish price pages show the pre-tax figure only. Here you get both, plus calculators for what the washing machine, the oven or an electric car charge costs at each hour, and whether a fixed-price deal would beat the PVPC on your own bill. No phone number, no form.`;
@@ -157,7 +157,7 @@ ${(() => {
       const v = datos(h);
       const P = h.P;
       const tramos = [...v.hoy.horas].sort((a, b) => a.ttc - b.ttc);
-      return `<h2>Today’s price in five numbers</h2>
+      return `<h2>Today’s electricity price in five numbers</h2>
 <p>The table above lists all ${v.hoy.horas.length} hours of ${h.dia(v.hoy.fecha)}. Five figures are enough to decide quickly, all with taxes, mainland prices:</p>
 ${h.table(['Figure', 'Hour', 'Price with taxes'], [
   ['Daily average', 'all 24 hours', h.kwh(v.hoy.media)],

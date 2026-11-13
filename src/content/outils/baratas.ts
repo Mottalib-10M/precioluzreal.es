@@ -28,7 +28,7 @@ export default defineGuide({
     title: 'Horas baratas luz hoy 2026: el mejor tramo con impuestos',
     description: 'Horas más baratas de la luz hoy, PVPC 2026 de Red Eléctrica: elige cuántas horas necesitas y te damos el mejor tramo seguido, con IVA e impuesto eléctrico.',
     h1: 'Horas más baratas de la luz hoy',
-    intro: 'Dinos cuántas horas seguidas necesitas y te damos el tramo más barato del día, con impuestos.',
+    intro: 'Dinos cuántas horas seguidas necesitas y te damos el tramo más barato de la luz hoy, con impuestos.',
     resume: (h) => {
       const v = V(h);
       return `Hoy, ${h.dia(v.hoy.fecha)}, las tres horas más baratas del PVPC son las de ${v.orden.slice(0, 3).sort((a, b) => a.i - b.i).map((x) => h.tramo(x.h)).join(', ')}, con un precio con impuestos entre ${h.kwh(v.orden[0].ttc)} y ${h.kwh(v.orden[2].ttc)}. Si lo que vas a encender necesita cuatro horas seguidas, el mejor tramo empieza a las ${String(v.hoy.horas[v.b4.inicio].h).padStart(2, '0')}:00 y sale a ${h.kwh(v.b4.media)} de media. No es lo mismo la hora más barata que el mejor tramo: un lavavajillas de tres horas no se puede partir, y una hora suelta muy barata rodeada de horas caras no sirve para él. Por eso la calculadora te deja elegir de una a ocho horas y te da las dos respuestas, las horas sueltas y el bloque seguido. Los precios son los oficiales de Red Eléctrica con el impuesto eléctrico y el IVA del día; en Canarias, con el IGIC al 0 %, y en Ceuta y Melilla, con su precio propio y el IPSI al 1 %.`;
@@ -46,7 +46,7 @@ export default defineGuide({
       return `<h2>Horas sueltas o un tramo seguido</h2>
 <p>Para el termo eléctrico o un radiador con programador, que se pueden encender y apagar varias veces, cuentan las horas sueltas: la lista que aparece bajo los campos las ordena por precio. Para una lavadora, un lavavajillas o la carga de un coche cuenta el tramo seguido, porque el programa no se interrumpe. El gráfico marca ese tramo y atenúa el resto del día.</p>
 <p>Con los precios de hoy, la hora más barata sola cuesta ${h.kwh(v.orden[0].ttc)}, pero el mejor tramo de cuatro horas sale a ${h.kwh(v.b4.media)}: la media sube porque arrastra horas vecinas. Esa diferencia es la que el simulador de cada aparato tiene en cuenta cuando calcula el coste de un programa largo.</p>
-<h2>Qué hace barata una hora</h2>
+<h2>Qué hace baratas las horas de la luz</h2>
 <p>Dos cosas. La primera es el mercado: cuando sopla el viento o hay sol, las renovables desplazan al gas y el precio cae. La segunda es el periodo de la ${h.src('cnmcCircular3_2020', 'Circular 3/2020')}: en valle los peajes y cargos de la energía casi desaparecen, en punta son los más altos. La guía de ${h.a('periodos', 'periodos horarios')} lo explica con las cifras de ${h.P.year}, y la del ${h.a('finde', 'fin de semana')} calcula cuánto se gana dejando una tarea para el sábado.</p>`;
     },
   },
@@ -57,7 +57,7 @@ export default defineGuide({
     title: 'Cheapest Electricity Hours Spain 2026: Today’s Best Slot',
     description: 'Cheapest electricity hours in Spain today, 2026 PVPC from Red Eléctrica: choose how many hours you need and get the best slot in a row, with VAT and tax.',
     h1: 'Cheapest electricity hours in Spain today',
-    intro: 'Tell us how many hours in a row you need and we give you the cheapest slot of the day, taxes included.',
+    intro: 'Tell us how many hours in a row you need and we give you the cheapest electricity hours in Spain for the day, as one slot, taxes included.',
     resume: (h) => {
       const v = V(h);
       return `Today, ${h.dia(v.hoy.fecha)}, the three cheapest PVPC hours are ${v.orden.slice(0, 3).sort((a, b) => a.i - b.i).map((x) => h.tramo(x.h)).join(', ')}, at between ${h.kwh(v.orden[0].ttc)} and ${h.kwh(v.orden[2].ttc)} including taxes. If what you are switching on needs four hours in a row, the best slot starts at ${String(v.hoy.horas[v.b4.inicio].h).padStart(2, '0')}:00 and averages ${h.kwh(v.b4.media)}. The cheapest hour and the best slot are not the same thing: a three-hour dishwasher cycle cannot be split, and one very cheap hour surrounded by dear ones is no use to it. That is why the calculator lets you pick anything from one to eight hours and gives both answers, the separate cheapest hours and the best unbroken run. Prices are Red Eléctrica’s official figures with that day’s electricity tax and VAT, for the mainland and the Balearic Islands; switch to the Canary Islands and the 0% IGIC is applied instead, or to Ceuta or Melilla for their own price and 1% IPSI. Nothing is sent anywhere: the ranking is done in your browser.`;
@@ -75,7 +75,7 @@ export default defineGuide({
       return `<h2>Separate hours or one unbroken slot</h2>
 <p>For an electric water heater or a radiator on a timer, which can switch on and off several times, the separate hours are what count: the list under the fields ranks them by price. For a washing machine, a dishwasher or a car charge, the unbroken slot is what counts, because the programme does not pause. The chart highlights that slot and fades the rest of the day.</p>
 <p>With today’s prices the single cheapest hour costs ${h.kwh(v.orden[0].ttc)}, but the best four-hour slot averages ${h.kwh(v.b4.media)}: the average rises because it drags in neighbouring hours. Each appliance calculator takes that into account when it prices a long programme.</p>
-<h2>What makes an hour cheap</h2>
+<h2>What makes electricity hours cheap in Spain</h2>
 <p>Two things. The market: when it is windy or sunny, renewables push gas out and the price falls. And the period under ${h.src('cnmcCircular3_2020', 'CNMC Circular 3/2020')}: off-peak, the energy tolls and charges almost vanish; at peak they are highest. The ${h.a('periodos', 'time-of-use periods')} guide sets out the ${h.P.year} figures, and the ${h.a('finde', 'weekend')} guide works out what you gain by leaving a job for Saturday.</p>`;
     },
   },

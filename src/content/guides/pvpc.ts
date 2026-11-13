@@ -23,7 +23,7 @@ export default defineGuide({
     title: 'PVPC 2026: qué es la tarifa regulada y cómo se calcula',
     description: 'Qué es el PVPC, la tarifa regulada de la luz en 2026: quién puede contratarla, cómo se forma el precio de cada hora y qué pesan los futuros en tu factura.',
     h1: 'Qué es el PVPC y cómo se calcula su precio',
-    intro: 'La tarifa regulada de la luz no tiene un precio fijo: cambia cada hora según una fórmula que fija el Gobierno.',
+    intro: 'La tarifa regulada de la luz, el PVPC, no tiene un precio fijo: cambia cada hora según una fórmula que fija el Gobierno.',
     resume: (h) => {
       const v = V(h);
       return `El PVPC, precio voluntario para el pequeño consumidor, es la tarifa de la luz regulada por el Estado para las personas físicas y las microempresas con hasta 10 kW de potencia. No es un precio fijo sino una fórmula, la del Real Decreto 216/2014, que da un precio distinto para cada hora: suma el coste de la energía, los peajes de la CNMC, los cargos del Ministerio y un margen de comercialización fijado por orden. Desde ${h.P.year} el ${h.num(h.P.futuros_pvpc.peso_2026 * 100, 0)} % de la energía se valora con productos a plazo y el resto con los mercados diario e intradiario, lo que suaviza los picos. Red Eléctrica publica cada tarde los 24 precios del día siguiente. En los últimos 30 días el término de energía ha salido de media a ${h.kwh(v.media30)} por kWh sin impuestos, y hoy la parte regulada de cada kWh es, en promedio, ${h.kwh(v.parteReg, 4)}. Solo lo venden las comercializadoras de referencia, y es la única tarifa con bono social.`;

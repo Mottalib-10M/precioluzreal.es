@@ -27,7 +27,7 @@ export default defineGuide({
     title: 'Precio luz cuartos de hora 2026: mercado cada 15 minutos',
     description: 'Precio de la luz por cuartos de hora en 2026: los 96 precios del mercado diario de hoy y mañana, junto al PVPC horario de los hogares. Datos de Red Eléctrica.',
     h1: 'Precio de la luz por cuartos de hora',
-    intro: 'El mercado mayorista pone un precio cada 15 minutos desde octubre de 2025. La factura PVPC sigue siendo por horas: aquí ves las dos cosas.',
+    intro: 'El mercado mayorista pone un precio de la luz por cuartos de hora, cada 15 minutos, desde octubre de 2025. La factura PVPC sigue siendo por horas: aquí ves las dos cosas.',
     resume: (h) => {
       const v = V(h);
       return `Hoy, ${h.dia(v.hoy)}, el mercado diario español ha fijado ${v.q.length} precios, uno por cuarto de hora, con una media de ${h.num(v.media, 2)} €/MWh, es decir ${h.num(v.media / 1000, 4)} € por kWh antes de peajes, cargos, margen e impuestos. Dentro de una misma hora el precio puede moverse mucho: hoy el mayor salto se da entre las ${String(v.horaSalto).padStart(2, '0')}:00 y las ${String(v.horaSalto + 1).padStart(2, '0')}:00, con ${h.num(v.salto, 2)} €/MWh de diferencia entre el cuarto más caro y el más barato. Ese detalle no llega a la factura de quien tiene PVPC, porque Red Eléctrica sigue publicando 24 precios horarios y los contadores de los hogares miden por horas; sí cuenta para algunas tarifas indexadas del mercado libre y para entender por qué el precio de una hora es el que es. La línea roja del gráfico es el PVPC de cada hora.`;
@@ -41,7 +41,7 @@ export default defineGuide({
       const v = V(h);
       return `<h2>Del cuarto de hora a la hora</h2>
 <p>El mercado diario europeo, en el que se compra la energía del día siguiente, trabaja desde octubre de 2025 con periodos de 15 minutos. Para el PVPC, Red Eléctrica traslada ese resultado a cada hora y le añade el resto de componentes que fija el ${h.src('rd216', 'Real Decreto 216/2014')}. Hoy la media del mercado es de ${h.num(v.media, 2)} €/MWh y la media del término de energía del PVPC, todavía sin impuestos, de ${h.num(v.mediaPv, 2)} €/MWh: la distancia entre las dos cifras son los productos a plazo, los ajustes y la parte regulada.</p>
-<h2>A quién le sirve esta página</h2>
+<h2>A quién le sirve el precio de la luz por cuartos de hora</h2>
 <p>A quien tiene una tarifa indexada del mercado libre que repercute el precio horario o cuartohorario, y a quien quiere entender por qué el PVPC de una hora sube o baja. Si tienes PVPC, la página útil es la del ${h.a('home', 'precio de la luz de hoy')}, con los 24 precios que pagas, y si dudas entre quedarte o pasar a un precio fijo, el ${h.a('libre', 'comparador PVPC o mercado libre')} hace la cuenta con impuestos.</p>`;
     },
   },
@@ -52,7 +52,7 @@ export default defineGuide({
     title: 'Quarter-Hour Electricity Price Spain 2026: 15-Minute Market',
     description: 'Spain’s electricity price by quarter hour in 2026: today’s and tomorrow’s 96 market prices next to the hourly PVPC households are billed. Red Eléctrica data.',
     h1: 'Electricity price in Spain by quarter hour',
-    intro: 'The wholesale market has set a price every 15 minutes since October 2025. The PVPC bill is still hourly: this page shows both.',
+    intro: 'The wholesale market has set an electricity price for every quarter hour since October 2025. The PVPC bill is still hourly: this page shows both.',
     resume: (h) => {
       const v = V(h);
       return `Today, ${h.dia(v.hoy)}, Spain’s day-ahead market set ${v.q.length} prices, one per quarter hour, averaging ${h.num(v.media, 2)} €/MWh, or ${h.num(v.media / 1000, 4)} € per kWh before tolls, charges, retail margin and taxes. Within a single hour the price can move a lot: today the widest swing is between ${String(v.horaSalto).padStart(2, '0')}:00 and ${String(v.horaSalto + 1).padStart(2, '0')}:00, with ${h.num(v.salto, 2)} €/MWh between the dearest and cheapest quarter. None of that reaches PVPC customers’ bills, because Red Eléctrica still publishes 24 hourly prices and household meters record by the hour. It does matter for some indexed market deals, and it helps explain why an hour’s price is what it is. The red line on the chart is each hour’s PVPC, before tax, so you can see at a glance how far the regulated tariff sits above the raw wholesale price at each moment of the day.`;
@@ -66,7 +66,7 @@ export default defineGuide({
       const v = V(h);
       return `<h2>From quarter hour to hour</h2>
 <p>The European day-ahead market, where next-day energy is bought, has worked in 15-minute periods since October 2025. For the PVPC, Red Eléctrica carries that result over to each hour and adds the other components set by ${h.src('rd216', 'Royal Decree 216/2014')}. Today the market averages ${h.num(v.media, 2)} €/MWh and the PVPC energy term, still before tax, ${h.num(v.mediaPv, 2)} €/MWh: the gap is forward products, balancing and the regulated part.</p>
-<h2>Who this page is for</h2>
+<h2>Who needs the quarter-hour electricity price</h2>
 <p>People on indexed market tariffs that pass through the hourly or quarter-hour price, and anyone who wants to understand why an hour’s PVPC goes up or down. If you are on the PVPC, the useful page is ${h.a('home', 'today’s electricity price')}, with the 24 prices you pay; and if you are weighing a switch to a fixed price, the ${h.a('libre', 'PVPC versus fixed price comparison')} does the sums with tax.</p>`;
     },
   },

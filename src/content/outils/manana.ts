@@ -56,7 +56,7 @@ export default defineGuide({
     title: 'Electricity Price Tomorrow Spain 2026: PVPC by Hour, Taxed',
     description: 'Spain’s electricity price tomorrow with VAT and tax: all 24 PVPC 2026 hours once Red Eléctrica publishes them, around 8:15 pm, plus the cheapest hour.',
     h1: 'Electricity price tomorrow in Spain: next day’s PVPC',
-    intro: 'Red Eléctrica publishes tomorrow’s prices every evening. Here they are with taxes and with the hour that suits you best.',
+    intro: 'Red Eléctrica publishes tomorrow’s electricity prices every evening. Here they are with taxes and with the hour that suits you best.',
     resume: (h) => {
       const v = V(h);
       return v.publicado
@@ -73,7 +73,7 @@ export default defineGuide({
       ];
     },
     body: (h) => {
-      return `<h2>How tomorrow’s price is set</h2>
+      return `<h2>How tomorrow’s electricity price is set</h2>
 <p>A day’s PVPC is built the day before. At midday the European day-ahead market clears, giving a price for each quarter hour; on top come the cost of the forward products bought by the reference retailers, the grid balancing services and, finally, the regulated tolls and charges for each hour’s period. Red Eléctrica puts the pieces together and publishes the 24 hourly prices on ${h.src('esiosPvpc', 'e·sios')} in the evening. That is the only figure that counts for your bill.</p>
 <p>So there is no point looking for the day after tomorrow: it does not exist until tomorrow evening. What you can know in advance is whether tomorrow is a working day or a holiday, and that already tells you a lot. On a weekday, from 10 to 14 and from 18 to 22 you pay the peak toll and charge, ${h.kwh(h.M.REGULADO_ENERGIA.P1, 4)} per kWh before tax in ${h.P.year}; from midnight to 8 am, just ${h.kwh(h.M.REGULADO_ENERGIA.P3, 4)}.</p>
 <h2>What to do with tomorrow’s price</h2>

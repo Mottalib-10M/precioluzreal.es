@@ -26,7 +26,7 @@ export default defineGuide({
     title: 'Peajes y cargos 2026: la parte regulada de la factura de luz',
     description: 'Peajes y cargos de la luz en 2026: valores de la CNMC y del Ministerio para la tarifa 2.0TD, en potencia y energía, qué financian y cuánto pesan cada mes.',
     h1: 'Peajes y cargos de la luz en 2026',
-    intro: 'Una parte de lo que pagas no depende del mercado: la fijan la CNMC y el Ministerio cada año en el BOE.',
+    intro: 'Una parte de lo que pagas no depende del mercado: los peajes y cargos, que fijan cada año en el BOE la CNMC y el Ministerio.',
     resume: (h) => {
       const v = V(h);
       return `Los peajes de transporte y distribución pagan las redes eléctricas y los fija la CNMC; los cargos pagan otros costes del sistema, como las renovables con retribución regulada, la deuda de años anteriores y el sobrecoste de las islas, y los fija el Ministerio. Para ${v.P.year}, la Resolución de la CNMC de 18 de diciembre de 2025 y la Orden TED/1524/2025 dejan el peaje de potencia de punta-llano en ${h.num(v.P.peajes.potencia_eur_kw_ano.P1, 6)} € por kW y año y el cargo en ${h.num(v.P.cargos.potencia_eur_kw_ano.P1, 6)} €. En la energía, peajes y cargos suman ${h.kwh(v.reg.P1, 4)} por kWh en punta, ${h.kwh(v.reg.P2, 4)} en llano y ${h.kwh(v.reg.P3, 4)} en valle, sin impuestos. Hoy esa parte regulada supone ${h.num(v.partePct * 100, 0)} % del término de energía del PVPC de media. Son iguales para todas las comercializadoras: el PVPC y el mercado libre pagan los mismos peajes y cargos.`;
@@ -70,7 +70,7 @@ ${h.table(['Concepto', 'P1', 'P2', 'P3'], [
     title: 'Network Tolls and Charges Spain 2026: Regulated Bill Costs',
     description: 'Spain’s electricity tolls (peajes) and charges (cargos) in 2026: CNMC and Ministry values for the 2.0TD tariff, what they fund and what they add each month.',
     h1: 'Electricity tolls and charges in Spain in 2026',
-    intro: 'Part of what you pay has nothing to do with the market: the CNMC and the Ministry set it every year in the BOE.',
+    intro: 'Part of what you pay has nothing to do with the market: the network tolls and charges, set every year in the BOE by the CNMC and the Ministry.',
     resume: (h) => {
       const v = V(h);
       return `Transmission and distribution tolls (peajes) pay for the power networks and are set by the CNMC, Spain’s energy regulator. Charges (cargos) pay other system costs, such as renewables with regulated returns, past tariff debt and the extra cost of island grids, and are set by the Ministry. For ${v.P.year}, the CNMC Resolution of 18 December 2025 and Order TED/1524/2025 put the peak-standard power toll at ${h.num(v.P.peajes.potencia_eur_kw_ano.P1, 6)} € per kW per year and the charge at ${h.num(v.P.cargos.potencia_eur_kw_ano.P1, 6)} €. On energy, tolls and charges together come to ${h.kwh(v.reg.P1, 4)} per kWh at peak, ${h.kwh(v.reg.P2, 4)} at standard times and ${h.kwh(v.reg.P3, 4)} off-peak, before tax. Today that regulated share is ${h.num(v.partePct * 100, 0)}% of the PVPC energy term on average. They are the same with every retailer: the PVPC and market tariffs pay identical tolls and charges.`;
@@ -95,7 +95,7 @@ ${h.table(['Item', 'P1', 'P2', 'P3'], [
   ['Energy charge (€/kWh)', h.num(P.cargos.energia_eur_kwh.P1, 6), h.num(P.cargos.energia_eur_kwh.P2, 6), h.num(P.cargos.energia_eur_kwh.P3, 6)],
 ], `2.0TD tariff. ${h.src('cnmcPeajes2026', 'CNMC Resolution of 18 December 2025')} and ${h.src('tedCargos2026', 'Order TED/1524/2025')}. For power, P1 is peak-standard and P2 off-peak; for energy, P1 peak, P2 standard and P3 off-peak.`, ['l', 'r', 'r', 'r'])}
 <p>The figures have six decimals because that is how they are published; the BOE is the reference, and the ${h.src('mitecoPeajes', 'Ministry')} summarises them on its tolls and charges page. The CNMC works out tolls with ${h.src('cnmcCircular3_2020', 'Circular 3/2020')}, which shares network costs among consumers by voltage and profile; the Ministry works out charges under the Royal Decree 148/2021 method.</p>
-<h2>How they show up on a PVPC bill</h2>
+<h2>How network tolls and charges show up on a PVPC bill</h2>
 <p>A PVPC bill has no line called “tolls”: they are built in. The bill’s power term is toll plus charge plus retail margin; each hour’s energy term, the one Red Eléctrica publishes, already contains its period’s toll and charge. This site checks that hour by hour against the official file, which lists that share in a column of its own.</p>
 <p>Today the average regulated share of the energy term is ${h.kwh(v.parteReg, 4)} per kWh, out of an average term of ${h.kwh(v.hoy.mediaSin, 4)}. When the market is cheap the regulated share weighs more in percentage terms; when it is dear, less.</p>
 <h2>Why they change every year</h2>

@@ -29,7 +29,7 @@ export default defineGuide({
     title: 'Cargar coche eléctrico precio 2026: coste en casa con PVPC',
     description: 'Cuánto cuesta cargar el coche eléctrico en casa con el PVPC 2026: precio de la recarga según la hora, la batería y el punto de carga, con los impuestos.',
     h1: 'Cuánto cuesta cargar el coche eléctrico en casa',
-    intro: 'Pon la batería, cuánto quieres cargar y tu punto de carga. Te decimos lo que cuesta y a qué hora conviene empezar.',
+    intro: 'Pon la batería del coche eléctrico, cuánto quieres cargar y tu punto de carga. Te decimos lo que cuesta y a qué hora conviene empezar.',
     resume: (h) => {
       const v = V(h);
       return `Cargar del ${v.C.desde_pct} al ${v.C.hasta_pct} % una batería de ${h.num(v.C.bateria_kwh)} kWh supone meter ${h.num(v.r23.kwh)} kWh. Con un enchufe doméstico de ${h.num(2.3, 1)} kW la recarga dura ${h.num(v.r23.horas, 1)} horas y, empezando a las 22:00 de hoy, ${h.dia(v.hoy.fecha)}, cuesta ${h.eur(v.noche23, 2)} con impuestos al precio PVPC de cada hora. Con un wallbox de ${h.num(7.4, 1)} kW se hace en ${h.num(v.r74.horas, 1)} horas, y entonces sí se puede elegir la hora: la mejor salida es a las ${h.M.reloj(v.m74.inicio)}, por ${h.eur(v.m74.coste, 2)}, frente a ${h.eur(v.tarde74, 2)} si se enchufa al llegar a casa a las 19:00. El simulador usa el precio de mañana para la parte de la recarga que pasa de medianoche, o una estimación si aún no está publicado. No incluye las pérdidas del cargador y de la batería, que hacen que salga algo más energía de la red que la que entra en el coche.`;
@@ -44,7 +44,7 @@ export default defineGuide({
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>Enchufe o wallbox</h2>
+      return `<h2>Cargar el coche eléctrico: enchufe o wallbox</h2>
 ${h.table(['Punto de carga', 'Potencia', `Horas para ${h.num(v.r23.kwh)} kWh`], h.P.aparatos.coche.potencias_tipicas_kw.map((k, i) => [['Enchufe doméstico (10 A)', 'Enchufe reforzado (16 A)', 'Wallbox monofásico (32 A)'][i], `${h.num(k, 1)} kW`, h.num(h.M.recarga(v.C.bateria_kwh, v.C.desde_pct, v.C.hasta_pct, k).horas, 1)]), 'Potencia = intensidad × 230 V. Sin pérdidas de carga.', ['l', 'r', 'r'])}
 <p>Con un enchufe normal, una recarga grande ocupa casi toda la noche y apenas deja elegir: se carga en las horas que hay. Con un wallbox, la misma energía cabe en unas pocas horas y se puede colocar en el tramo más barato, que en días de mucho sol puede estar a mediodía si el coche está en casa. En los dos casos, la guía de ${h.a('periodos', 'periodos horarios')} explica por qué de 0 a 8 horas la parte regulada del precio es mínima.</p>
 <p>La ${h.a('potencia', 'potencia contratada')} es la otra mitad de la cuenta: subir solo la de valle cuesta poco y evita que salte el interruptor con el coche y la casa a la vez.</p>`;
@@ -72,7 +72,7 @@ ${h.table(['Punto de carga', 'Potencia', `Horas para ${h.num(v.r23.kwh)} kWh`], 
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>Socket or wallbox</h2>
+      return `<h2>Charging at home in Spain: socket or wallbox</h2>
 ${h.table(['Charge point', 'Power', `Hours for ${h.num(v.r23.kwh)} kWh`], h.P.aparatos.coche.potencias_tipicas_kw.map((k, i) => [['Household socket (10 A)', 'Reinforced socket (16 A)', 'Single-phase wallbox (32 A)'][i], `${h.num(k, 1)} kW`, h.num(h.M.recarga(v.C.bateria_kwh, v.C.desde_pct, v.C.hasta_pct, k).horas, 1)]), 'Power = current × 230 V. No charging losses.', ['l', 'r', 'r'])}
 <p>On an ordinary socket a big charge fills most of the night and leaves little choice: it charges in whatever hours there are. With a wallbox the same energy fits into a few hours and can go into the cheapest slot, which on very sunny days may be midday if the car is at home. Either way, the ${h.a('periodos', 'time-of-use periods')} guide explains why the regulated part of the price is minimal from midnight to 8 am.</p>
 <p>${h.a('potencia', 'Contracted power')} is the other half of the sum: raising only the off-peak power costs little and stops the switch tripping with the car and the house running together.</p>`;

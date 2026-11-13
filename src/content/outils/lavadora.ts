@@ -44,7 +44,7 @@ export default defineGuide({
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>Lo que gasta cada clase</h2>
+      return `<h2>Poner la lavadora: lo que gasta cada clase</h2>
 ${h.table(['Clase energética', 'Índice máximo', `kWh por lavado (${h.num(v.A.capacidad_kg)} kg)`], Object.entries(v.A.eei_max).map(([c, i]) => [c, h.num(i as number), h.num(h.M.kwhLavadora(v.A.capacidad_kg, c), 3)]), 'Programa eco 40-60. Consumo normalizado × índice máximo de la clase, Reglamento Delegado (UE) 2019/2014.', ['l', 'r', 'r'])}
 <p>Buena parte de la energía de un lavado se va en calentar el agua, y por eso el programa y la temperatura pesan más que la marca. Un programa frío o el eco a 40 °C gastan mucho menos que un algodón a 60 °C. Lo que la hora cambia es el precio de cada kWh: la misma energía cuesta más o menos según cuándo arranca la máquina.</p>
 <p>Si tu lavadora tiene inicio diferido, mira el precio de ${h.a('manana', 'mañana')} por la noche y déjala programada. Para el lavavajillas, el cálculo es el mismo con otra fórmula de consumo: está en su ${h.a('lavavajillas', 'página propia')}.</p>`;
@@ -57,7 +57,7 @@ ${h.table(['Clase energética', 'Índice máximo', `kWh por lavado (${h.num(v.A.
     title: 'Washing Machine Cost Spain 2026: Price per Wash by the Hour',
     description: 'What a washing machine costs to run in Spain today: one wash at each hour on the 2026 PVPC with taxes, by energy class, and the best start time to set.',
     h1: 'What a washing machine costs to run today in Spain',
-    intro: 'Pick the capacity, the energy class and the start time: you get the cost of the wash and the hour when it is cheapest.',
+    intro: 'Pick the washing machine’s capacity, the energy class and the start time: you get the cost of the wash and the hour when it is cheapest.',
     resume: (h) => {
       const v = V(h);
       return `An ${h.num(v.A.capacidad_kg)} kg class C washing machine uses at most ${h.num(v.kC, 3)} kWh on the eco 40-60 programme, the one the EU energy label measures. Today, ${h.dia(v.hoy.fecha)}, that wash costs ${h.eur(v.m.coste, 2)} including taxes if it starts at ${h.M.reloj(v.m.inicio)}, the best time, and ${h.eur(v.m.peor, 2)} if it starts at ${h.M.reloj(v.m.peorInicio)}, the worst. At four washes a week for a year, the gap between getting the timing right and wrong is about ${h.eur(v.anual(v.m.peor - v.m.coste), 0)}. A class A machine of the same size uses at most ${h.num(v.kA, 3)} kWh, and its best wash today costs ${h.eur(v.mA.coste, 2)}. Energy use comes from the formula in Delegated Regulation (EU) 2019/2014, at the top of each class; if your label shows a different figure, change the class or capacity. Hotter or longer programmes use more than eco.`;
@@ -72,7 +72,7 @@ ${h.table(['Clase energética', 'Índice máximo', `kWh por lavado (${h.num(v.A.
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>What each class uses</h2>
+      return `<h2>What each washing machine class uses and costs</h2>
 ${h.table(['Energy class', 'Maximum index', `kWh per wash (${h.num(v.A.capacidad_kg)} kg)`], Object.entries(v.A.eei_max).map(([c, i]) => [c, h.num(i as number), h.num(h.M.kwhLavadora(v.A.capacidad_kg, c), 3)]), 'Eco 40-60 programme. Standard consumption × class maximum index, Delegated Regulation (EU) 2019/2014.', ['l', 'r', 'r'])}
 <p>Much of a wash’s energy goes into heating water, which is why programme and temperature matter more than the brand. A cold programme or eco at 40 °C uses far less than cottons at 60 °C. What the hour changes is the price of each kWh: the same energy costs more or less depending on when the machine starts.</p>
 <p>If your machine has a delay timer, check ${h.a('manana', 'tomorrow’s price')} in the evening and leave it set. For the dishwasher the sum is the same with a different consumption formula, on its ${h.a('lavavajillas', 'own page')}.</p>`;

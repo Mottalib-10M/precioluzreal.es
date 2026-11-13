@@ -25,7 +25,7 @@ export default defineGuide({
     title: 'Precio luz fin de semana 2026: lo que ahorras el sábado',
     description: 'Precio de la luz el fin de semana en 2026: por qué sábados, domingos y festivos van en valle todo el día, la media de las últimas semanas y lo que ahorras.',
     h1: 'Precio de la luz el fin de semana',
-    intro: 'Los sábados, domingos y festivos nacionales todas las horas van en valle. Te contamos cuánto se nota y en qué horas.',
+    intro: 'Los sábados, domingos y festivos nacionales todas las horas van en valle. Te contamos cuánto baja el precio de la luz el fin de semana y en qué horas.',
     resume: (h) => {
       const v = V(h);
       return `En las últimas ocho semanas, del ${h.dia(v.lf.desde)} al ${h.dia(v.lf.hasta)}, el kWh del PVPC ha costado de media ${h.kwh(v.lf.finde)} con impuestos los sábados, domingos y festivos nacionales, frente a ${h.kwh(v.lf.laborable)} los laborables: ${v.dif >= 0 ? `${h.kwh(v.dif)} menos` : `${h.kwh(-v.dif)} más`} por kWh. La razón principal es regulada: la Circular 3/2020 de la CNMC pone en valle las 24 horas de esos días, de modo que la energía no paga los peajes y cargos de punta (${h.kwh(v.reg.P1, 4)} por kWh) ni de llano (${h.kwh(v.reg.P2, 4)}), sino los de valle (${h.kwh(v.reg.P3, 4)}). A eso se suma que la demanda baja y el mercado suele estar más barato. La ventaja no es igual a todas horas: es grande por la tarde y por la noche, cuando un laborable estaría en punta, y pequeña de madrugada, que ya era valle. El mini-simulador compara una hora concreta en laborable y en fin de semana con los perfiles reales de los últimos 28 días.`;
@@ -44,7 +44,7 @@ export default defineGuide({
       const P = h.P;
       const lab = h.M.esDiaValle;
       void lab;
-      return `<h2>Por qué el fin de semana es valle</h2>
+      return `<h2>Por qué el fin de semana la luz va en valle</h2>
 <p>La ${h.src('cnmcCircular3_2020', 'Circular 3/2020 de la CNMC')}, que fijó en 2021 los periodos de la tarifa 2.0TD, considera valle todas las horas de los sábados, los domingos y los festivos nacionales de fecha fija. El motivo es técnico: esos días la demanda eléctrica baja y las redes van holgadas, así que no tiene sentido cobrarles el peaje de las horas de más carga. Los cargos del Ministerio siguen la misma estructura.</p>
 <p>En el PVPC eso se ve directamente en el precio de cada hora. Un martes a las 20:00, la energía lleva ${h.kwh(v.reg.P1, 4)} de peajes y cargos por kWh; un sábado a la misma hora, ${h.kwh(v.reg.P3, 4)}. Antes de impuestos, la diferencia es de ${h.kwh(v.reg.P1 - v.reg.P3, 4)}, y con el impuesto eléctrico y el IVA se acerca a ${h.kwh((v.reg.P1 - v.reg.P3) * (1 + P.impuestos.iee_general) * (1 + P.impuestos.iva_general), 4)}, aunque el mercado costara exactamente lo mismo los dos días.</p>
 <h2>Lo que dicen los datos de las últimas semanas</h2>
@@ -68,7 +68,7 @@ ${h.table(['Tipo de día', 'Precio medio con impuestos', 'Periodo de la energía
     title: 'Weekend Electricity Price Spain 2026: What Saturday Saves',
     description: 'Spain’s weekend electricity price in 2026: why Saturdays, Sundays and holidays are off-peak all day, the average of recent weeks and what moving jobs saves.',
     h1: 'Electricity prices at the weekend in Spain',
-    intro: 'On Saturdays, Sundays and national holidays every hour is off-peak. Here is how much difference that makes, and at what times.',
+    intro: 'On Saturdays, Sundays and national holidays every hour is off-peak. Here is how much that lowers the weekend electricity price, and at what times.',
     resume: (h) => {
       const v = V(h);
       return `Over the last eight weeks, from ${h.dia(v.lf.desde)} to ${h.dia(v.lf.hasta)}, a PVPC kWh has cost on average ${h.kwh(v.lf.finde)} including taxes on Saturdays, Sundays and national holidays, against ${h.kwh(v.lf.laborable)} on weekdays: ${v.dif >= 0 ? `${h.kwh(v.dif)} less` : `${h.kwh(-v.dif)} more`} per kWh. The main reason is regulatory. CNMC Circular 3/2020 puts all 24 hours of those days in the off-peak band, so energy pays neither peak tolls and charges (${h.kwh(v.reg.P1, 4)} per kWh) nor standard ones (${h.kwh(v.reg.P2, 4)}), only off-peak ones (${h.kwh(v.reg.P3, 4)}). On top of that, demand drops and the market is often cheaper. The advantage is not the same at every hour: it is large in the evening and at night, when a weekday would be at peak, and small in the early morning, which is off-peak anyway. The mini calculator compares a given hour on weekdays and weekends using the real profiles of the last 28 days.`;
@@ -100,7 +100,7 @@ ${h.table(['Type of day', 'Average price with taxes', 'Energy period'], [
 <p>To fine-tune, the ${h.a('baratas', 'cheapest hours')} page gives the best slot of every day, weekends included, and the ${h.a('lavadora', 'washing machine')} page prices a wash at each hour. Month-by-month differences are in the ${h.a('historial', 'history')}.</p>
 <h2>Bank holidays and 12 October</h2>
 <p>A fixed-date national holiday that falls on a weekday is billed like a Sunday: off-peak all day. That is what happened on Monday 12 October 2026. Extra days off added by regions or town halls, by contrast, change nothing on the bill: for the electricity tariff they are working days. Circular 3/2020 only counts 6 January and the non-substitutable fixed-date national holidays in the ${h.src('festivos2026', 'official public-holiday calendar')}: in 2026, 1 November and 6 December fall on a Sunday, and the Mondays 2 November and 7 December that some regions declare are billed as working days. The ${h.a('periodos', 'time-of-use periods')} guide has the full list of holidays that count.</p>
-<h2>When the weekend is not cheaper</h2>
+<h2>When the weekend electricity price is not cheaper</h2>
 <p>The off-peak advantage covers tolls and charges, not the market. A Saturday with little wind and heavy cloud, or with high gas prices across Europe, can carry a market price high enough to cancel it out, especially in the evening. That is why the table for each day is worth a glance before you plan around the weekend: the rule of thumb holds on average, as the eight-week figures above show, but not every single weekend. The ${h.a('home', 'today’s price')} page and the ${h.a('manana', 'tomorrow’s price')} page give the exact answer for the two days ahead.</p>
 <p>A second caveat is the appliance itself. Moving a wash from 21:00 on a Wednesday to 21:00 on a Saturday saves the peak toll; moving it from 03:00 on a Wednesday to 03:00 on a Saturday saves almost nothing, because both hours were already off-peak. The mini calculator at the top shows exactly that for any hour you pick.</p>
 `;

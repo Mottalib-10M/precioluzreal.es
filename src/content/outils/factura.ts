@@ -65,7 +65,7 @@ ${h.table(['Línea', 'Cómo se calcula', 'En el ejemplo'], [
     title: 'Electricity Bill Calculator Spain 2026: Your Real PVPC Bill',
     description: 'Electricity bill calculator for Spain, 2026, on the real PVPC of the last 30 days: power, energy, social discount, electricity tax, meter and VAT, for your use.',
     h1: 'Electricity bill calculator on the real PVPC',
-    intro: 'Enter your use and your power: you get the bill you would have paid at the prices of the last 30 days.',
+    intro: 'Enter your use and your power: this electricity bill calculator gives you the bill you would have paid at the prices of the last 30 days.',
     resume: (h) => {
       const v = V(h);
       return `With 270 kWh over 30 days and 4.6 kW of contracted power, the PVPC bill from ${h.dia(v.e.desde)} to ${h.dia(v.e.hasta)} would have come to ${h.eur(v.f.total, 2)} including taxes: ${h.eur(v.f.potencia, 2)} for power, ${h.eur(v.f.energia, 2)} for energy, ${h.eur(v.f.iee, 2)} of electricity tax, ${h.eur(v.f.contador, 2)} for the meter, ${h.eur(v.f.financiacionBono, 2)} towards the social discount and ${h.eur(v.f.indirecto, 2)} of VAT. The calculator does not use a made-up average price. It spreads your consumption hour by hour with the standard 2.0TD meter profile Red Eléctrica publishes and charges each hour at its real PVPC price. Change the kWh, the power, your territory (mainland and Balearics, Canaries, Ceuta or Melilla, each with its own price and tax) and the social discount, and the sum redoes itself instantly; every line comes from a BOE rule cited below. It follows the same layout as a reference retailer’s bill, so you can hold it up against yours.`;
@@ -80,7 +80,7 @@ ${h.table(['Línea', 'Cómo se calcula', 'En el ejemplo'], [
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>The lines of a PVPC bill</h2>
+      return `<h2>The lines of a PVPC electricity bill in Spain</h2>
 ${h.table(['Line', 'How it is worked out', 'In the example'], [
   ['Power', 'kW × (toll + charge + margin) per day, peak-standard and off-peak', h.eur(v.f.potencia, 2)],
   ['Energy', 'kWh in each hour × that hour’s PVPC price', h.eur(v.f.energia, 2)],

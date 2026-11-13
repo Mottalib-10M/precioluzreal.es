@@ -33,7 +33,7 @@ export default defineGuide({
     title: 'PVPC o mercado libre 2026: compara tu factura con impuestos',
     description: 'PVPC o mercado libre en 2026: tu factura de los últimos 30 días con el PVPC real y con el precio fijo de tu oferta, impuestos en los dos lados. Sin teléfono.',
     h1: 'PVPC o mercado libre: ¿qué te sale más barato?',
-    intro: 'Escribe el precio de la oferta que te proponen. Te decimos cuánto habrías pagado con ella y con el PVPC en los últimos 30 días.',
+    intro: 'Escribe el precio de la oferta del mercado libre que te proponen. Te decimos cuánto habrías pagado con ella y con el PVPC en los últimos 30 días.',
     resume: (h) => {
       const v = V(h);
       return `En los últimos 30 días, del ${h.dia(v.e.desde)} al ${h.dia(v.e.hasta)}, la energía del PVPC salió de media a ${h.kwh(v.empate, 4)} por kWh antes de impuestos para un hogar con el consumo tipo de Red Eléctrica, y una factura de 270 kWh con 4,6 kW habría costado ${h.eur(v.pvpc.total, 2)}. Es la cifra de empate: una oferta de precio fijo con la misma potencia solo te habría ahorrado dinero si su energía estaba por debajo de ${h.kwh(v.empate, 4)} sin impuestos, que son ${h.kwh(v.empateTtc, 4)} con impuesto eléctrico e IVA. La comparación solo es justa si se hace con impuestos en los dos lados y con tu consumo; las comercializadoras suelen anunciar el precio fijo sin impuestos y algunas webs lo comparan con un PVPC al que tampoco le suman nada. Este comparador lo hace bien y no te pide ningún dato de contacto.`;
@@ -48,7 +48,7 @@ export default defineGuide({
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>Lo que hay que comparar</h2>
+      return `<h2>Lo que hay que comparar entre PVPC y mercado libre</h2>
 <p>Una oferta del mercado libre tiene dos precios: el de la energía, en euros por kWh, y el de la potencia, en euros por kW y día o por kW y año. A los dos se les aplican los mismos impuestos que al PVPC y el mismo alquiler de contador, así que la comparación correcta es la de la factura completa. El comparador calcula las dos facturas con tu consumo, tu potencia y los impuestos del día, y te da la diferencia.</p>
 <p>Ojo con tres trampas habituales. Un precio «sin impuestos» frente a un PVPC «con impuestos», o al revés. Un precio fijo que solo es fijo el primer año. Y un descuento que se aplica solo a la energía y no a la potencia. Para ver qué ofertas existen sin dar tus datos, la CNMC tiene un ${h.src('cnmcComparador', 'comparador oficial de ofertas')}.</p>
 <h2>El PVPC de los últimos meses</h2>
@@ -62,7 +62,7 @@ export default defineGuide({
     title: 'PVPC vs Fixed Price Spain 2026: Compare Your Bill with Tax',
     description: 'PVPC or a fixed-price deal in 2026: your bill for the last 30 days on the real PVPC and on the fixed price you were offered, tax on both sides. No phone.',
     h1: 'PVPC or a fixed price: which costs you less?',
-    intro: 'Enter the price you have been offered. We show what you would have paid with it, and with the PVPC, over the last 30 days.',
+    intro: 'Enter the fixed price you have been offered. We show what you would have paid with it, and with the PVPC, over the last 30 days.',
     resume: (h) => {
       const v = V(h);
       return `Over the last 30 days, from ${h.dia(v.e.desde)} to ${h.dia(v.e.hasta)}, PVPC energy averaged ${h.kwh(v.empate, 4)} per kWh before tax for a home on Red Eléctrica’s standard consumption profile, and a 270 kWh bill with 4.6 kW of power would have cost ${h.eur(v.pvpc.total, 2)}. That is the break-even figure: a fixed-price deal with the same power would only have saved you money if its energy price was below ${h.kwh(v.empate, 4)} before tax, which is ${h.kwh(v.empateTtc, 4)} with electricity tax and VAT. The comparison is only fair with tax on both sides and with your own consumption. Retailers usually quote fixed prices before tax, and some comparison sites set them against a PVPC that has no tax added either. This tool does it properly, and it asks for no contact details at all.`;
@@ -77,7 +77,7 @@ export default defineGuide({
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>What you actually need to compare</h2>
+      return `<h2>PVPC or fixed price: what you actually need to compare</h2>
 <p>A market offer has two prices: energy, in euros per kWh, and power, in euros per kW per day or per year. Both carry the same taxes as the PVPC and the same meter rental, so the right comparison is the whole bill. The tool works out both bills with your use, your power and the day’s taxes, and gives you the difference.</p>
 <p>Watch for three common traps: a pre-tax price set against a tax-inclusive PVPC, or the other way round; a fixed price that is only fixed for the first year; and a discount that applies to energy but not to power. To see which offers exist without handing over your details, the CNMC regulator has an ${h.src('cnmcComparador', 'official offers comparison tool')}.</p>
 <h2>The PVPC over recent months</h2>

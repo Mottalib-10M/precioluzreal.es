@@ -22,7 +22,7 @@ export default defineGuide({
     title: 'Bono social luz 2026: requisitos, renta y descuento',
     description: 'Bono social de la luz 2026: comprueba con tu renta y tu hogar si te corresponde, si eres vulnerable o severo, y cuánto bajaría tu factura PVPC con el descuento.',
     h1: 'Bono social de la luz 2026: ¿te corresponde y cuánto ahorras?',
-    intro: 'Con el número de personas y la renta de tu hogar te decimos la categoría y lo que baja tu factura. Sin dar ningún dato a nadie.',
+    intro: 'Con el número de personas y la renta de tu hogar te decimos si te corresponde el bono social de la luz, la categoría y lo que baja tu factura. Sin dar ningún dato a nadie.',
     resume: (h) => {
       const v = V(h);
       return `En ${h.P.year} el bono social descuenta un ${h.num(v.B.descuento_vulnerable * 100, 1)} % de la potencia y de la energía a los consumidores vulnerables y un ${h.num(v.B.descuento_severo * 100, 1)} % a los vulnerables severos, hasta el 31 de diciembre de 2026, según el Real Decreto-ley 7/2026; sin esa prórroga los descuentos ordinarios del Real Decreto 897/2017 son del ${h.num(v.B.descuento_ordinario_vulnerable * 100, 0)} % y del ${h.num(v.B.descuento_ordinario_severo * 100, 0)} %. Por renta, tiene derecho el hogar que no supera 1,5 veces el IPREM de 14 pagas (${h.eur(v.u1, 0)} para una persona sola), con 0,3 más por cada adulto adicional y 0,5 por cada menor: ${h.eur(v.u21, 0)} para dos adultos y un menor. Las familias numerosas, los pensionistas con pensión mínima y los beneficiarios del Ingreso Mínimo Vital entran por su situación. Solo existe con el PVPC y se pide a una comercializadora de referencia. La calculadora te da la categoría y el ahorro en una factura de 30 días.`;
@@ -38,7 +38,7 @@ export default defineGuide({
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>Quién tiene derecho</h2>
+      return `<h2>Quién tiene derecho al bono social de la luz</h2>
 <p>El ${h.src('rd897', 'Real Decreto 897/2017')} define al consumidor vulnerable: una persona física, titular del contrato de su vivienda habitual, acogida al PVPC y con una de estas condiciones. La renta del hogar por debajo del umbral, ser familia numerosa, que todos los que tienen ingresos sean pensionistas con la pensión mínima y no tengan otros ingresos de más de 500 euros al año, o que alguien del hogar cobre el Ingreso Mínimo Vital.</p>
 ${h.table(['Hogar', 'Umbral de renta (vulnerable)', 'Umbral (severo)'], [
   ['1 adulto', h.eur(h.M.umbralRenta(1, 0, false), 0), h.eur(h.M.umbralRenta(1, 0, false) / 2, 0)],
@@ -57,7 +57,7 @@ ${h.table(['Hogar', 'Umbral de renta (vulnerable)', 'Umbral (severo)'], [
     title: 'Bono Social Spain 2026: Eligibility, Income Limits, Discount',
     description: 'Spain’s bono social electricity discount in 2026: check with your income and household whether you qualify, as vulnerable or severe, and what your bill saves.',
     h1: 'Spain’s social electricity discount (bono social) in 2026',
-    intro: 'From the number of people and your household income we give you the category and how much your bill drops. No data goes to anyone.',
+    intro: 'From the number of people and your household income we tell you whether you qualify for the bono social, give you the category and how much your bill drops. No data goes to anyone.',
     resume: (h) => {
       const v = V(h);
       return `In ${h.P.year} the bono social takes ${h.num(v.B.descuento_vulnerable * 100, 1)}% off power and energy for vulnerable consumers and ${h.num(v.B.descuento_severo * 100, 1)}% for severely vulnerable ones, until 31 December 2026 under Royal Decree-law 7/2026; without that extension the standard discounts in Royal Decree 897/2017 are ${h.num(v.B.descuento_ordinario_vulnerable * 100, 0)}% and ${h.num(v.B.descuento_ordinario_severo * 100, 0)}%. On income, a household qualifies if it earns no more than 1.5 times the 14-payment IPREM, a Spanish reference index (${h.eur(v.u1, 0)} for someone living alone), plus 0.3 for each extra adult and 0.5 for each child: ${h.eur(v.u21, 0)} for two adults and a child. Large families, minimum-pension pensioners and people receiving the Minimum Living Income qualify by their situation. It only exists on the PVPC and you apply through a reference retailer. The calculator gives you the category and the saving on a 30-day bill.`;
@@ -73,7 +73,7 @@ ${h.table(['Hogar', 'Umbral de renta (vulnerable)', 'Umbral (severo)'], [
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>Who qualifies</h2>
+      return `<h2>Who qualifies for the bono social</h2>
 <p>${h.src('rd897', 'Royal Decree 897/2017')} defines a vulnerable consumer as an individual who holds the contract for their main home, is on the PVPC and meets one of these conditions: household income below the threshold; being a large family; everyone with income being a pensioner on the minimum pension with no other income above 500 euros a year; or someone in the household receiving the Minimum Living Income.</p>
 ${h.table(['Household', 'Income threshold (vulnerable)', 'Threshold (severe)'], [
   ['1 adult', h.eur(h.M.umbralRenta(1, 0, false), 0), h.eur(h.M.umbralRenta(1, 0, false) / 2, 0)],

@@ -39,7 +39,7 @@ export default defineGuide({
     },
     body: (h) => {
       const v = V(h);
-      return `<h2>El precio de un kW en ${h.P.year}</h2>
+      return `<h2>El precio de un kW de potencia contratada en ${h.P.year}</h2>
 ${h.table(['Pieza', 'Punta-llano (P1)', 'Valle (P2)', 'Norma'], [
   ['Peaje de transporte y distribución', h.num(h.P.peajes.potencia_eur_kw_ano.P1, 6), h.num(h.P.peajes.potencia_eur_kw_ano.P2, 6), 'Resolución CNMC 18/12/2025'],
   ['Cargo del sistema', h.num(h.P.cargos.potencia_eur_kw_ano.P1, 6), h.num(h.P.cargos.potencia_eur_kw_ano.P2, 6), 'Orden TED/1524/2025'],
@@ -57,7 +57,7 @@ ${h.table(['Pieza', 'Punta-llano (P1)', 'Valle (P2)', 'Norma'], [
     title: 'Contracted Power Spain 2026: What Each kW Costs on the PVPC',
     description: 'Contracted power in Spain: the 2026 PVPC power term with tolls, charges, margin, electricity tax and VAT, and the yearly saving from moving to a lower step.',
     h1: 'Contracted power: what you pay for each kW',
-    intro: 'Power is paid every day, whether you use electricity or not. Work out what yours costs and what a lower setting would save.',
+    intro: 'Contracted power is paid every day, whether you use electricity or not. Work out what yours costs and what a lower setting would save.',
     resume: (h) => {
       const v = V(h);
       return `In ${h.P.year}, each kW contracted for the peak-standard period costs ${h.eur(v.kwP1, 2)} a year on the PVPC including taxes, and the off-peak kW only a few cents. With 4.6 kW in both periods, the power term comes to ${h.eur(v.a.total, 2)} a year; with 3.45 kW it would be ${h.eur(v.b.total, 2)}, ${h.eur(v.a.total - v.b.total, 2)} less, and with 5.75 kW ${h.eur(v.c.total, 2)}. The price per kW has three parts, all in the BOE: the CNMC network toll, the government system charge and the PVPC retail margin, plus electricity tax and VAT. The calculator compares your current power with the one you are considering, using the steps that match 10 to 50 amp switches. The real decision is about use rather than price: with too little power the switch trips when the oven, hob and washing machine coincide.`;
@@ -71,7 +71,7 @@ ${h.table(['Pieza', 'Punta-llano (P1)', 'Valle (P2)', 'Norma'], [
       ];
     },
     body: (h) => {
-      return `<h2>The price of one kW in ${h.P.year}</h2>
+      return `<h2>The price of one kW of contracted power in ${h.P.year}</h2>
 ${h.table(['Component', 'Peak-standard (P1)', 'Off-peak (P2)', 'Source'], [
   ['Transmission and distribution toll', h.num(h.P.peajes.potencia_eur_kw_ano.P1, 6), h.num(h.P.peajes.potencia_eur_kw_ano.P2, 6), 'CNMC Resolution 18/12/2025'],
   ['System charge', h.num(h.P.cargos.potencia_eur_kw_ano.P1, 6), h.num(h.P.cargos.potencia_eur_kw_ano.P2, 6), 'Order TED/1524/2025'],

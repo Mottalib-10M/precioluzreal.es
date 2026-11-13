@@ -24,7 +24,7 @@ export default defineGuide({
     title: 'Periodos horarios luz 2026: punta, llano y valle en la 2.0TD',
     description: 'Periodos horarios de la luz en 2026: horas de punta, llano y valle de la tarifa 2.0TD, fines de semana y festivos, y lo que pesan peajes y cargos en cada uno.',
     h1: 'Periodos horarios de la luz: punta, llano y valle',
-    intro: 'La tarifa 2.0TD divide el día en tres franjas con peajes y cargos distintos. Saber en cuál estás ayuda a leer el precio.',
+    intro: 'La tarifa 2.0TD divide el día en tres periodos horarios con peajes y cargos distintos. Saber en cuál estás ayuda a leer el precio.',
     resume: (h) => {
       const v = V(h);
       return `La tarifa de acceso 2.0TD, la de casi todos los hogares, tiene tres periodos para la energía desde junio de 2021, según la Circular 3/2020 de la CNMC. Punta (P1), de lunes a viernes de 10 a 14 y de 18 a 22 horas. Llano (P2), de lunes a viernes de 8 a 10, de 14 a 18 y de 22 a 24 horas. Valle (P3), de 0 a 8 horas los laborables y las 24 horas de sábados, domingos y festivos nacionales de fecha fija. En ${h.P.year}, los peajes y cargos de la energía suman ${h.kwh(v.reg.P1, 4)} por kWh en punta, ${h.kwh(v.reg.P2, 4)} en llano y ${h.kwh(v.reg.P3, 4)} en valle, sin impuestos. Con el PVPC esa diferencia va dentro del precio de cada hora; con una tarifa de tres periodos del mercado libre, cada franja tiene su precio fijo. Para la potencia solo hay dos periodos: punta-llano y valle. Hoy, ${h.dia(v.hoy.fecha)}, ${v.valleHoy ? 'todo el día es valle' : `la media con impuestos es de ${h.kwh(v.p1)} en punta, ${h.kwh(v.p2)} en llano y ${h.kwh(v.p3)} en valle`}.`;
@@ -42,7 +42,7 @@ export default defineGuide({
     body: (h) => {
       const v = V(h);
       const P = h.P;
-      return `<h2>El horario completo</h2>
+      return `<h2>El horario completo de los tres periodos</h2>
 ${h.table(['Franja', 'Lunes a viernes', 'Sábado, domingo y festivo nacional', 'Peajes + cargos (€/kWh)'], [
   ['Punta (P1)', '10:00–14:00 y 18:00–22:00', 'nunca', h.num(v.reg.P1, 6)],
   ['Llano (P2)', '08:00–10:00, 14:00–18:00 y 22:00–24:00', 'nunca', h.num(v.reg.P2, 6)],
@@ -66,7 +66,7 @@ ${h.table(['Franja', 'Lunes a viernes', 'Sábado, domingo y festivo nacional', '
     title: 'Time-of-Use Periods Spain 2026: Peak, Standard and Off-Peak',
     description: 'Spain’s time-of-use periods in 2026: peak, standard and off-peak hours on the 2.0TD tariff, weekends and holidays, and what tolls and charges weigh in each.',
     h1: 'Electricity time-of-use periods in Spain: peak, standard, off-peak',
-    intro: 'The 2.0TD tariff splits the day into three bands with different tolls and charges. Knowing which one you are in helps you read the price.',
+    intro: 'The 2.0TD tariff splits the day into three time-of-use periods with different tolls and charges. Knowing which one you are in helps you read the price.',
     resume: (h) => {
       const v = V(h);
       return `The 2.0TD access tariff, used by nearly every household, has had three energy periods since June 2021 under CNMC Circular 3/2020. Peak (P1) runs Monday to Friday from 10:00 to 14:00 and from 18:00 to 22:00. Standard (P2, “llano”) runs Monday to Friday from 8:00 to 10:00, 14:00 to 18:00 and 22:00 to 24:00. Off-peak (P3, “valle”) covers midnight to 8:00 on weekdays and all 24 hours on Saturdays, Sundays and fixed-date national holidays. In ${h.P.year} the energy tolls and charges come to ${h.kwh(v.reg.P1, 4)} per kWh at peak, ${h.kwh(v.reg.P2, 4)} at standard times and ${h.kwh(v.reg.P3, 4)} off-peak, before tax. On the PVPC that difference is built into each hour’s price; on a three-period market tariff each band has its own fixed price. Power has only two periods, peak-standard and off-peak. Today, ${h.dia(v.hoy.fecha)}, ${v.valleHoy ? 'the whole day is off-peak' : `the average with tax is ${h.kwh(v.p1)} at peak, ${h.kwh(v.p2)} at standard times and ${h.kwh(v.p3)} off-peak`}.`;
@@ -84,7 +84,7 @@ ${h.table(['Franja', 'Lunes a viernes', 'Sábado, domingo y festivo nacional', '
     body: (h) => {
       const v = V(h);
       const P = h.P;
-      return `<h2>The full timetable</h2>
+      return `<h2>The full timetable of the time-of-use periods</h2>
 ${h.table(['Band', 'Monday to Friday', 'Saturday, Sunday, national holiday', 'Tolls + charges (€/kWh)'], [
   ['Peak (P1)', '10:00–14:00 and 18:00–22:00', 'never', h.num(v.reg.P1, 6)],
   ['Standard (P2)', '08:00–10:00, 14:00–18:00 and 22:00–24:00', 'never', h.num(v.reg.P2, 6)],
