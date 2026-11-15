@@ -73,3 +73,8 @@ h1 { font-weight: 700; } h2 { font-weight: 650; } h3 { font-weight: 600; }
   /* Filet aux couleurs du drapeau sous l'en-tête des cartes de résultat (signe du site). */
   .filete-bandera { background: linear-gradient(90deg, #AA151B 0 25%, #F1BF00 25% 75%, #AA151B 75% 100%); height: 3px; border-radius: 2px; }
 }
+
+/* Champs en subgrid : quand le formulaire est étiré à la hauteur du résultat voisin, ses rangées ne doivent pas s'étirer (trous entre libellé, case et aide). */
+:where(form, div, fieldset):has(> .grid-rows-subgrid) { align-content: start; }
+/* Dans une grille, le cadre du formulaire s'arrête sous ses champs au lieu de s'étirer à la hauteur du résultat. */
+.grid > form:has(> .grid-rows-subgrid) { align-self: start; }
