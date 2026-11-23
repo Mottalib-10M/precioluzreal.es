@@ -41,6 +41,7 @@ export const HOME: Record<'es' | 'en', HomeText> = {
         { q: '¿El precio de la tabla incluye impuestos?', a: `El archivo de Red Eléctrica da el término de energía sin impuestos. Nosotros le sumamos el impuesto eléctrico (${pct(h, v.imp.iee, 2)}) y el IVA (${pct(h, v.imp.iva, 0)}), o el IGIC al 0 % en Canarias para viviendas de hasta 10 kW. La opción «Excluidos» muestra la cifra de Red Eléctrica tal cual.` },
         { q: '¿Por qué el precio sale con 24 horas y no por cuartos de hora?', a: `El mercado mayorista fija un precio cada 15 minutos desde el 1 de octubre de 2025, pero el PVPC que se factura sigue teniendo 24 precios al día: los contadores de los hogares registran el consumo por horas. Los 96 cuartos del mercado los puedes ver en la página de ${'cuartos de hora'}.` },
         { q: '¿Cuál es la hora más barata para poner la lavadora hoy?', a: `Con los precios de hoy, un lavado de ${h.num(v.lav, 2)} kWh (lavadora de 8 kg, clase C, programa eco) sale más barato si empieza a las ${h.M.reloj(v.lavBarata.inicio)}: ${h.eur(v.lavBarata.coste, 2)} con impuestos. La calculadora de esta página lo recalcula con la hora y el aparato que elijas.` },
+        { q: '¿Cuál será el precio de la luz en 2027?', a: `Nadie publica un precio oficial por adelantado: Red Eléctrica da cada día el del día siguiente. Lo ya fijado: sin prórroga, el bono social vuelve al 35 % y al 50 % el 1 de enero de 2027. Los peajes de la CNMC y los cargos del Ministerio para 2027 se esperan en la segunda quincena de diciembre de 2026; el simulador los aplicará en cuanto salgan en el BOE.` },
         { q: '¿El precio es el mismo en toda España?', a: `El término de energía del PVPC es el mismo en la Península, Baleares y Canarias. Cambian los impuestos: en Canarias no se paga IVA sino IGIC, que es del 0 % para la vivienda con hasta 10 kW. Ceuta y Melilla tienen su propio precio, porque allí la punta y el llano empiezan una hora más tarde, y pagan IPSI al 1 % en lugar de IVA, según la ordenanza fiscal de cada ciudad. Elige tu territorio en «Dónde vives».` },
         { q: '¿Qué parte del precio no depende del mercado?', a: `Los peajes de la CNMC y los cargos del Ministerio del término de energía: en ${h.P.year} suman ${h.kwh(v.reg.P1, 4)} en punta, ${h.kwh(v.reg.P2, 4)} en llano y ${h.kwh(v.reg.P3, 4)} en valle, sin impuestos. Por eso el valle, de 0 a 8 horas y todo el fin de semana, parte con ventaja.` },
         { q: '¿Estos precios sirven si tengo una tarifa del mercado libre?', a: `Solo si tu contrato es indexado al mercado. Con una tarifa de precio fijo pagas lo mismo a cualquier hora, y la tabla te sirve para comparar: el simulador de facturas calcula lo que habrías pagado en los últimos 30 días con el PVPC y con tu precio fijo.` },
@@ -104,6 +105,15 @@ ${h.table(['Concepto', 'Importe', 'Norma'], [
 ], undefined, ['l', 'r', 'l'])}
 <p>Con 4,6 kW contratados, solo la potencia cuesta ${h.eur(v.pot)} al año antes de impuestos. Es el motivo por el que revisar la ${h.a('potencia', 'potencia contratada')} suele ahorrar más que perseguir la hora barata.</p>
 
+<h2>Precio de la luz en 2027: lo que ya se sabe</h2>
+<ul>
+<li><strong>Bono social</strong>: el descuento del 42,5 % y del 57,5 % vale hasta el 31 de diciembre de 2026 (${h.src('rdl7_2026', 'Real Decreto-ley 7/2026')}). Sin una nueva prórroga, desde el 1 de enero de 2027 vuelve al 35 % y al 50 % del ${h.src('rd897', 'Real Decreto 897/2017')}.</li>
+<li><strong>Peajes 2027</strong>: los fija la CNMC por resolución; los de 2026 se publicaron el 18 de diciembre de 2025, así que se esperan en la segunda quincena de diciembre de 2026.</li>
+<li><strong>Cargos 2027</strong>: los fija el Ministerio para la Transición Ecológica por orden; los de 2026 salieron el 23 de diciembre de 2025.</li>
+<li><strong>IVA e impuesto eléctrico</strong>: tipos generales sin fecha de fin; no hay rebaja aprobada para 2027.</li>
+<li><strong>Precio de la energía</strong>: Red Eléctrica publica cada día los precios del día siguiente; no existe un precio oficial para 2027 por adelantado.</li>
+</ul>
+<p>El simulador pasará a los valores de 2027 en cuanto se publiquen en el BOE. El detalle, con el tablero de peajes y cargos por periodo, está en ${h.a('luz2027', 'la luz en 2027')}.</p>
 <h2>Ejemplos con los precios de hoy</h2>
 <p>Lo que cuesta un uso de cada aparato si lo enciendes en la mejor y en la peor hora del ${h.dia(v.hoy.fecha)}, con impuestos. Consumos según la etiqueta energética de la Unión Europea, en el límite superior de la clase indicada:</p>
 ${(() => {
@@ -148,6 +158,7 @@ ${(() => {
         { q: 'Do the prices in the table include tax?', a: `Red Eléctrica’s file gives the energy term before tax. We add the electricity tax (${pct(h, v.imp.iee, 2)}) and VAT (${pct(h, v.imp.iva, 0)}), or the Canary Islands’ IGIC at 0% for homes up to 10 kW. The “Excluded” option shows Red Eléctrica’s figure untouched.` },
         { q: 'Why are there 24 hourly prices and not 96 quarter hours?', a: `The wholesale market has set a price for every 15 minutes since 1 October 2025, but the PVPC that households are billed still has 24 prices a day, because domestic meters record consumption hour by hour. The 96 market quarters are on the quarter-hour price page.` },
         { q: 'What is the cheapest time to run the washing machine today?', a: `With today’s prices, a ${h.num(v.lav, 2)} kWh wash (8 kg machine, class C, eco programme) is cheapest if it starts at ${h.M.reloj(v.lavBarata.inicio)}: ${h.eur(v.lavBarata.coste, 2)} including tax. The second calculator on this page reworks it for the start time and the appliance you choose, with tomorrow’s prices too.` },
+        { q: 'What will electricity cost in Spain in 2027?', a: `No official price is published ahead: Red Eléctrica gives each next day’s prices daily. Already set: without an extension, the bono social returns to 35% and 50% on 1 January 2027. The CNMC tolls and Ministry charges for 2027 are expected in the second half of December 2026; the calculator will apply them once they appear in the BOE.` },
         { q: 'Is the price the same everywhere in Spain?', a: `The PVPC energy term is the same on the mainland, the Balearics and the Canary Islands. Taxes differ: the Canaries charge IGIC instead of VAT, at 0% for homes with up to 10 kW. Ceuta and Melilla have their own price, because peak and standard hours start an hour later there, and they pay 1% IPSI instead of VAT, under each city’s tax bylaw. Pick your territory under “Where you live”.` },
         { q: 'Which part of the price has nothing to do with the market?', a: `The CNMC tolls and the government charges in the energy term: in ${h.P.year} they add up to ${h.kwh(v.reg.P1, 4)} at peak, ${h.kwh(v.reg.P2, 4)} at standard times and ${h.kwh(v.reg.P3, 4)} off-peak, before tax. That is why off-peak, midnight to 8 am and all weekend, starts with an advantage.` },
         { q: 'I am on a fixed-price deal. Is any of this useful to me?', a: `Only if your contract is indexed to the market. On a fixed price every hour costs the same, and the table becomes a benchmark: the bill calculator works out what the last 30 days would have cost on the PVPC and on your fixed price, taxes on both sides.` },
@@ -211,6 +222,15 @@ ${h.table(['Item', 'Amount', 'Source'], [
 ], undefined, ['l', 'r', 'l'])}
 <p>With 4.6 kW contracted, power alone costs ${h.eur(v.pot)} a year before tax. That is why checking your ${h.a('potencia', 'contracted power')} often saves more than chasing the cheap hour.</p>
 
+<h2>Electricity price in Spain in 2027: what is already known</h2>
+<ul>
+<li><strong>Bono social</strong>: the 42.5% and 57.5% discounts run until 31 December 2026 (${h.src('rdl7_2026', 'Royal Decree-law 7/2026')}). Without a new extension, from 1 January 2027 they return to the 35% and 50% of ${h.src('rd897', 'Royal Decree 897/2017')}.</li>
+<li><strong>2027 tolls</strong> are set by the CNMC in a resolution; the 2026 ones were published on 18 December 2025, so the 2027 ones are expected in the second half of December 2026.</li>
+<li><strong>2027 charges</strong> are set by the Ministry for the Ecological Transition in an order; the 2026 ones came out on 23 December 2025.</li>
+<li><strong>VAT and electricity tax</strong>: standard rates with no end date; no cut has been approved for 2027.</li>
+<li><strong>Energy price</strong>: Red Eléctrica publishes each next day’s prices daily; there is no official 2027 price in advance.</li>
+</ul>
+<p>The calculator will move to the 2027 values as soon as they appear in the BOE. Details, with the toll and charge table by period, are in ${h.a('luz2027', 'electricity in 2027')}.</p>
 <h2>Worked examples with today’s prices</h2>
 <p>One use of each appliance at the best and at the worst start time on ${h.dia(v.hoy.fecha)}, with taxes. Energy use follows the EU energy label method, at the top of the class shown:</p>
 ${(() => {

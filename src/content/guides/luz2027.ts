@@ -31,7 +31,7 @@ export default defineGuide({
     title: 'Precio de la luz 2027: bono social, peajes e IVA tras 2026',
     description: 'Precio de la luz 2027: el bono social pasa del 42,5 % de 2026 al 35 % en enero si no hay prórroga; peajes y cargos aún sin publicar, IVA del 21 % sin cambios.',
     h1: 'Precio de la luz en 2027: lo que ya se sabe y lo que falta',
-    intro: 'El 1 de enero de 2027 cambian varias piezas de la factura. Una ya está fijada por la norma; las otras se publican en diciembre.',
+    intro: 'El precio de la luz cambia el 1 de enero de 2027 en varias piezas de la factura. Una ya está fijada por la norma; las otras se publican en diciembre.',
     resume: (h) => {
       const v = V(h);
       return `Para 2027 solo hay una cifra de la factura de la luz que ya fija la norma: el bono social. El Real Decreto-ley 7/2026 mantiene el descuento en el ${h.pct(v.B.descuento_vulnerable, 1)} para los consumidores vulnerables y en el ${h.pct(v.B.descuento_severo, 1)} para los vulnerables severos hasta el 31 de diciembre de 2026. Desde el 1 de enero de 2027, si el Gobierno no aprueba una prórroga, vuelven los porcentajes del Real Decreto 897/2017: ${h.pct(v.B.descuento_ordinario_vulnerable, 0)} y ${h.pct(v.B.descuento_ordinario_severo, 0)}. Sobre ${h.eur(v.base, 0)} al mes de potencia y energía, un hogar vulnerable pasaría de ${h.eur(v.v26, 2)} a ${h.eur(v.v27, 2)} de descuento. Los peajes de la CNMC y los cargos del Ministerio para 2027 aún no se han publicado: los de 2026 salieron el 18 y el 23 de diciembre de 2025. El IVA del 21 % y el impuesto eléctrico del 5,11 % son los tipos generales de la ley, sin fecha de fin. El precio de la energía del PVPC sigue al mercado cada día y no se puede anunciar.`;
@@ -80,7 +80,7 @@ ${h.table(['Término 2.0TD', 'Peaje 2026', 'Cargo 2026', '2027'], filasPeajes(h,
     title: 'Electricity Price Spain 2027: Social Discount After 2026',
     description: 'Electricity price Spain 2027: the social discount drops from 42.5% in 2026 to 35% in January unless extended; tolls not yet published, 21% VAT unchanged.',
     h1: 'Electricity prices in Spain in 2027: what is known and what is missing',
-    intro: 'Several parts of the bill change on 1 January 2027. One is already set by law; the others are published in December.',
+    intro: 'The electricity price in Spain changes on 1 January 2027 in several parts of the bill. One is already set by law; the others are published in December.',
     resume: (h) => {
       const v = V(h);
       return `For 2027, only one figure on the Spanish electricity bill is already set by law: the social discount, the bono social. Royal Decree-law 7/2026 keeps it at ${h.pct(v.B.descuento_vulnerable, 1)} for vulnerable consumers and ${h.pct(v.B.descuento_severo, 1)} for severely vulnerable ones until 31 December 2026. From 1 January 2027, unless the Government approves an extension, the Royal Decree 897/2017 rates return: ${h.pct(v.B.descuento_ordinario_vulnerable, 0)} and ${h.pct(v.B.descuento_ordinario_severo, 0)}. On ${h.eur(v.base, 0)} a month of power and energy, a vulnerable household would go from a ${h.eur(v.v26, 2)} discount to ${h.eur(v.v27, 2)}. The CNMC network tolls and the Ministry system charges for 2027 are not yet published: the 2026 ones came out on 18 and 23 December 2025. The 21% VAT and the 5.11% electricity tax are the general statutory rates, with no end date. The PVPC energy price follows the market every day and cannot be announced in advance.`;
@@ -111,7 +111,7 @@ ${h.table(['2.0TD term', '2026 toll', '2026 charge', '2027'], filasPeajes(h, 'Pe
 <p>Year-on-year changes are usually small on energy and somewhat larger on power, but there is no public CNMC proposal for the 2027 electricity tolls from which to draw a figure. That is why we give no estimate. The ${h.a('peajes', 'tolls and charges')} guide explains what each term pays for and how much it weighs on your bill.</p>
 <h2>Electricity taxes in 2027</h2>
 <p>The ${h.src('ley38Iee', 'special electricity tax')} has a general rate of 5.11269632%, with a minimum of €1 per MWh for households, and ${h.src('ley37Iva', 'VAT')} a general rate of ${h.pct(v.im.iva_general, 0)}. These are the statutory rates, with no end date. In 2026 they were cut for certain periods under rules tied to the electricity price index, which the ${h.a('impuestos', 'electricity taxes')} guide explains month by month. No cut or similar rule has been approved for 2027, so unless a new decree appears, the January bill will carry the general rates.</p>
-<h2>The energy price in 2027</h2>
+<h2>The electricity price in Spain in 2027: the energy term</h2>
 <p>On the PVPC, the price of each kWh is set every day from the wholesale market and a share of forward markets, as the guide on ${h.a('pvpc', 'what the PVPC is')} explains. That price cannot be announced a year ahead, and any figure for 2027 would be a forecast, not a fact. On the free market, the price is the one in your contract: if it renews in 2027, check whether the supplier changes it and compare it with the PVPC.</p>
 <h2>What to do before 1 January 2027</h2>
 <ol>

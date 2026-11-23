@@ -55,6 +55,8 @@ ${h.table(['Línea', 'Cómo se calcula', 'En el ejemplo'], [
   ['IVA', `${h.num(v.f.imp.iva * 100, 0)} % sobre todo lo anterior`, h.eur(v.f.indirecto, 2)],
   ['Total', '', h.eur(v.f.total, 2)],
 ], `270 kWh y 4,6 kW, PVPC del ${h.dia(v.e.desde)} al ${h.dia(v.e.hasta)}.`, ['l', 'l', 'r'])}
+<h2>La factura de la luz en 2027</h2>
+<p>Las líneas serán las mismas en 2027, pero tres importes cambiarán el 1 de enero. Los peajes (CNMC) y los cargos (Ministerio para la Transición Ecológica) de 2027 aún no se han publicado; los de 2026 salieron el 18 y el 23 de diciembre de 2025, así que se esperan en la segunda quincena de diciembre de 2026. Y, sin prórroga, el descuento del bono social vuelve al 35 % o al 50 %. El simulador aplicará los valores de 2027 en cuanto se publiquen en el BOE; ${h.a('luz2027', 'la luz en 2027')} da el detalle.</p>
 <p>La CNMC tiene su propio ${h.src('cnmcFactura', 'simulador oficial de la factura')}, útil para contrastar. La diferencia de este es que trabaja con los precios ya publicados de cada hora y muestra lo que habrías pagado, no una previsión. Si quieres comparar con una oferta de precio fijo, el ${h.a('libre', 'comparador PVPC o mercado libre')} usa este mismo cálculo; y si tienes derecho al ${h.a('bono', 'bono social')}, elige tu categoría en el campo correspondiente.</p>`;
     },
   },
@@ -90,6 +92,8 @@ ${h.table(['Line', 'How it is worked out', 'In the example'], [
   ['VAT', `${h.num(v.f.imp.iva * 100, 0)}% on everything above`, h.eur(v.f.indirecto, 2)],
   ['Total', '', h.eur(v.f.total, 2)],
 ], `270 kWh and 4.6 kW, PVPC from ${h.dia(v.e.desde)} to ${h.dia(v.e.hasta)}.`, ['l', 'l', 'r'])}
+<h2>Your electricity bill in Spain in 2027</h2>
+<p>The lines stay the same in 2027, but three amounts change on 1 January. The 2027 tolls (CNMC) and charges (Ministry for the Ecological Transition) are not published yet; the 2026 ones came out on 18 and 23 December 2025, so they are expected in the second half of December 2026. And, without an extension, the bono social discount returns to 35% or 50%. The calculator will apply the 2027 values once they appear in the BOE; ${h.a('luz2027', 'electricity in 2027')} has the details.</p>
 <p>The CNMC regulator runs its own ${h.src('cnmcFactura', 'official bill simulator')}, handy as a cross-check. The difference here is that this one works with each hour’s already-published price and shows what you would have paid, not a forecast. To compare against a fixed-price offer, the ${h.a('libre', 'PVPC versus fixed price comparison')} uses the same sum; and if you qualify for the ${h.a('bono', 'social discount')}, pick your category in its field.</p>`;
     },
   },
